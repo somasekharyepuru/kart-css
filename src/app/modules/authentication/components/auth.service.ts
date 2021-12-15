@@ -4,6 +4,7 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,27 @@ export class AuthService {
   authState: BehaviorSubject<Boolean> = new BehaviorSubject(false);
   constructor(
     private storageService: StorageService,
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private router: Router
+  ) {
+    const isLoggedIn = this.isLoggedIn();
+    if (isLoggedIn) {
+      this.authState.next(true);
+    } else {
+      this.authState.next(false);
+    }
+  }
 
   public login(user: Pick<User, 'email' | 'password'>): Observable<User> {
+    const loginPostData = {
+      username: user.email,
+      password: user.password
+    }
     return new Observable( observer => {
-      const endPoint = '/api/users/login';
-      this.http.post<any>(environment.URL + endPoint, user).subscribe( data => {
+      const endPoint = '/api/users/login/';
+      this.http.post<any>(environment.URL + endPoint, loginPostData).subscribe( data => {
         this.setStorage(data);
+        this.routeToProducts();
         observer.next(data);
         observer.complete();
       }, error => {
@@ -30,10 +44,15 @@ export class AuthService {
   }
 
   public register(user: User): Observable<User> {
+    user.name =user.firstName + " " + user.lastName;
+    delete user.firstName;
+    delete user.lastName;
+    delete user.confirmPassword;
     return new Observable( observer => {
       const endPoint = '/api/users/register';
       this.http.post<any>(environment.URL + endPoint, user).subscribe( data => {
         this.setStorage(data);
+        this.routeToProducts();
         observer.next(data);
         observer.complete();
       }, error => {
@@ -123,6 +142,10 @@ export class AuthService {
   getCurrentUserId() {
     let userInfo: any = localStorage.getItem('userInfo');
     return !!userInfo ? JSON.parse(userInfo._id) : '';
+  }
+
+  private routeToProducts() {
+    this.router.navigate(['', 'products'])
   }
 
 }

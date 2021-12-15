@@ -25,18 +25,18 @@ export class RegisterComponent implements OnInit {
   public isValidPassword: boolean = false;
   ngOnInit(): void {
     this.signUpForm = new FormGroup({
-      userFirstName: new FormControl('', Validators.required),
-      userLastName: new FormControl('', Validators.required),
-      userEmail: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required)
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20)])
     }, {
-      validators: [this.checkPasswords]
-    })
+        validators: [this.checkPasswords]
+      })
   }
 
   register() {
-    this.authService.register(this.signUpForm.value).subscribe( data => {
+    this.authService.register(this.signUpForm.value).subscribe(data => {
 
     }, error => {
       // this.toastr.error('Registration Failed', error);
@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  private checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => {
+  private checkPasswords: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
     let pass = group.get('password').value;
     let confirmPass = group.get('confirmPassword').value
     return pass === confirmPass ? null : { notSame: true }

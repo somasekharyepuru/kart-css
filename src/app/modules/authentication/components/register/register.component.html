@@ -15,17 +15,17 @@
             matInput
             placeholder="First Name"
             type="text"
-            name="userFirstName"
-            formControlName="userFirstName"
+            name="firstName"
+            formControlName="firstName"
             required
           />
         </mat-form-field>
 
         <small
           *ngIf="
-            !!f.userFirstName.errors &&
-            !!f.userFirstName.errors.required &&
-            f.userFirstName.touched
+            !!f.firstName.errors &&
+            !!f.firstName.errors.required &&
+            f.firstName.touched
           "
           class="error-message"
         >
@@ -37,17 +37,17 @@
             matInput
             placeholder="Last Name"
             type="text"
-            name="userLastName"
-            formControlName="userLastName"
+            name="lastName"
+            formControlName="lastName"
             required
           />
         </mat-form-field>
 
         <small
           *ngIf="
-            !!f.userLastName.errors &&
-            !!f.userLastName.errors.required &&
-            f.userLastName.touched
+            !!f.lastName.errors &&
+            !!f.lastName.errors.required &&
+            f.lastName.touched
           "
           class="error-message"
         >
@@ -59,8 +59,8 @@
             matInput
             placeholder="Email"
             type="text"
-            name="userEmail"
-            formControlName="userEmail"
+            name="email"
+            formControlName="email"
             autocomplete="off"
             email="true"
             required
@@ -69,9 +69,9 @@
 
         <small
           *ngIf="
-            !!f.userEmail.errors &&
-            !!f.userEmail.errors.required &&
-            f.userEmail.touched
+            !!f.email.errors &&
+            !!f.email.errors.required &&
+            f.email.touched
           "
           class="error-message"
         >
@@ -95,8 +95,7 @@
           "
           class="error-message"
         >
-          Password should be at least 8 characters long should contain one
-          number,one character and one special character.
+        password must be 8-20 characters
         </small>
 
         <mat-form-field class="example-full-width">

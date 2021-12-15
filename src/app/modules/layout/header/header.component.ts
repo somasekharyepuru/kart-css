@@ -29,7 +29,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.authState.subscribe( data => {
+      console.log(data, 'data here')
       this.isLoggedIn = Boolean(data);
+      this.currentUser = this.authService.getUserInfo();
     })
     this.searchForm.valueChanges.pipe(debounceTime(1000)).subscribe( data => {
       console.log(data, 'data here in the things')

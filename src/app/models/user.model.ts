@@ -1,8 +1,9 @@
 export interface User {
-  userName: string;
+  name: string;
   email: string;
   firstName: string;
   lastName: string;
   password: string;
+  confirmPassword: string;
   isAdmin: boolean;
 }

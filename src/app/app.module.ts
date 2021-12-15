@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from './modules/layout/layout.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutModule,
     HttpClientModule,
     FlexLayoutModule,
+    NgbModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],

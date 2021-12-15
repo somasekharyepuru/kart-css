@@ -21,7 +21,7 @@
     <div class="col text-white" *ngIf="isLoggedIn">
       <div ngbDropdown class="d-inline-block">
         <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
-          {{ !!currentUser.firstName ? currentUser.firstName : currentUser.email }}
+          {{ currentUser?.name }}
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button ngbDropdownItem>Profile</button>
@@ -31,12 +31,12 @@
     </div>
 
     <div class="col  text-white" *ngIf="!isLoggedIn">
-      <button class="btn" id="dropdownBasic1" routerLink="/login">
+      <button class="btn" id="dropdownBasic1" [routerLink]="['', 'auth', 'login']">
         Login
       </button>
     </div>
 
-    <div class="col text-white" *ngIf="isLoggedIn && !!currentUser.isAdmin">
+    <div class="col text-white" *ngIf="isLoggedIn && !!currentUser?.isAdmin">
       <div ngbDropdown class="d-inline-block">
         <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
           Admin
