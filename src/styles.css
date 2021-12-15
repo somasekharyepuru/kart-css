@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.error-message {
+  color: red;
+  float: right;
+  display: block;
+}
+
+.width-25 {
+  width: 25%;
+}
+
+.width-12 {
+  width: 12%;
+}
+
+.float-r {
+  float: right;
+}
+
+.success {
+  color: green;
+}
+
+.mr-13 {
+  margin-left: 1.3rem;
+}
+
+.alert {
+  color: red;
+}
+

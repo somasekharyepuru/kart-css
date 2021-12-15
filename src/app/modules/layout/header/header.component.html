@@ -1,0 +1,58 @@
+<header>
+  <div class="navbar bg-primary shadow-sm">
+    <div class="navbar-brand align-item-center d-flex">
+      <i class="fas fa-shipping-fast logo" [routerLink]="['/']">
+        &nbsp;
+        <strong> CalKart</strong>
+      </i>
+
+      <div class="form-group">
+        <input type="text" placeholder="Search Product" [formControl]="searchForm"
+          class="form-control" />
+      </div>
+      <span class="fas fa-search search-icon"></span>
+    </div>
+
+    <!-- <button *ngIf="currentUser"><i class="fas fa-user"></i></button>
+    <button *ngIf="!currentUser" routerLink="/login" class="btn btn-primary">
+      Login
+    </button> -->
+
+    <div class="col text-white" *ngIf="isLoggedIn">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
+          {{ !!currentUser.firstName ? currentUser.firstName : currentUser.email }}
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>Profile</button>
+          <button ngbDropdownItem (click)="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col  text-white" *ngIf="!isLoggedIn">
+      <button class="btn" id="dropdownBasic1" routerLink="/login">
+        Login
+      </button>
+    </div>
+
+    <div class="col text-white" *ngIf="isLoggedIn && !!currentUser.isAdmin">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
+          Admin
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem routerLink="../admin/userlist">Users</button>
+          <button ngbDropdownItem routerLink="../admin/productlist">
+            Products
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button routerLink="/cart" class="btn bty-primary">
+      <i class="fas fa-cart-plus cart-icon"></i>
+      <!-- <div class="badge bg-danger">{{ totalItems }}</div> -->
+    </button>
+  </div>
+</header>
