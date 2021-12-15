@@ -1,0 +1,33 @@
+.manage-products {
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
+}
+.manage-products__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.manage-products__table {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.manage-products__table table {
+  width: 100%;
+}
+.manage-products__image {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+}
+.manage-products__action-btn {
+  margin-right: .5rem;
+}
+
+tr.mat-footer-row, tr.mat-row {
+  height: 90px;
+}
+::ng-deep .mat-column-name {
+  width: 50%;
+}

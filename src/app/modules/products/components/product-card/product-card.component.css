@@ -1,0 +1,25 @@
+.product-card {
+  /* max-width: 300px; */
+}
+.product-card img {
+  height: 200px;
+  Object-fit: cover;
+  transition: all .2s ease;
+}
+.product-card:hover img {
+  transform: scaleY(1.1);
+}
+
+.product-card__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-card__info h2 {
+  color: blue;
+}
+.product-card mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
