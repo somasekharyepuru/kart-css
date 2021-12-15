@@ -17,7 +17,7 @@ export class AuthService {
 
   public login(user: Pick<User, 'email' | 'password'>): Observable<User> {
     return new Observable( observer => {
-      const endPoint = '/api/users/login/';
+      const endPoint = '/api/users/login';
       this.http.post<any>(environment.URL + endPoint, user).subscribe( data => {
         this.setStorage(data);
         observer.next(data);
@@ -31,7 +31,7 @@ export class AuthService {
 
   public register(user: User): Observable<User> {
     return new Observable( observer => {
-      const endPoint = '/api/users/register/';
+      const endPoint = '/api/users/register';
       this.http.post<any>(environment.URL + endPoint, user).subscribe( data => {
         this.setStorage(data);
         observer.next(data);
