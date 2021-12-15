@@ -52,7 +52,7 @@
 
     <button routerLink="/cart" class="btn bty-primary">
       <i class="fas fa-cart-plus cart-icon"></i>
-      <!-- <div class="badge bg-danger">{{ totalItems }}</div> -->
+      <div class="badge bg-danger">{{ cartCount > 0 ? cartCount : null }}</div>
     </button>
   </div>
 </header>

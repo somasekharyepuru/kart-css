@@ -10,8 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'products',
-    loadChildren: './modules/products/products.module#ProductsModule',
-    canActivate: []
+    loadChildren: './modules/products/products.module#ProductsModule'
   },
   {
     path: 'auth',
@@ -20,10 +19,7 @@ const routes: Routes = [
   {
     path: 'cart',
     loadChildren: './modules/cart/cart.module#CartModule',
-    canActivate: [AuthGuard],
-    data: {
-      role: 'ADMIN'
-    }
+    canActivate: [AuthGuard]
   }
 ];
 

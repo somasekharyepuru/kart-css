@@ -10,6 +10,7 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-stroked-button color="primary">Add to cart</button>
+    <button mat-stroked-button color="primary" (click)="addToCart()" *ngIf="!isProductExists">Add to cart</button>
+    <button mat-stroked-button color="primary" [routerLink]="['', 'cart']" *ngIf="isProductExists">Go To Cart</button>
   </mat-card-actions>
 </mat-card>

@@ -3,8 +3,10 @@ import { AuthService } from '../../authentication/components/auth.service';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { User } from 'src/app/models/user.model';
+import { CartService } from '../../cart/cart.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +17,12 @@ export class HeaderComponent implements OnInit {
   searchForm = new FormControl('');
   isLoggedIn: boolean = false;
   currentUser: User | null;
+  destroy = new Subject();
+  cartCount = 0;
   constructor(
     public authService: AuthService,
     public router: Router,
+    private cartService: CartService
   ) {
     this.isLoggedIn = this.authService.isLoggedIn();
     if (!!this.isLoggedIn) {
@@ -25,6 +30,9 @@ export class HeaderComponent implements OnInit {
     } else {
       this.currentUser = null;
     }
+    this.cartService.cartDetails.pipe(takeUntil(this.destroy)).subscribe( data => {
+      this.cartCount = data.length;
+    })
   }
 
   ngOnInit(): void {
@@ -46,6 +54,11 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  onDestroy() {
+    this.destroy.next(true);
+    this.destroy.complete();
   }
 
 }
