@@ -24,7 +24,7 @@
           {{ currentUser?.name }}
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem>Profile</button>
+          <!-- <button ngbDropdownItem>Profile</button> -->
           <button ngbDropdownItem (click)="logout()">Logout</button>
         </div>
       </div>
@@ -42,8 +42,8 @@
           Admin
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem routerLink="../admin/userlist">Users</button>
-          <button ngbDropdownItem routerLink="../admin/productlist">
+          <!-- <button ngbDropdownItem routerLink="../admin/userlist">Users</button> -->
+          <button ngbDropdownItem [routerLink]="['', 'products', 'manage']">
             Products
           </button>
         </div>
