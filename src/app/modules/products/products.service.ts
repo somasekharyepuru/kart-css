@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of, Subject, Observable } from 'rxjs';
 import { IProduct } from 'src/app/models';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,18 +22,27 @@ export class ProductsService {
       this.setProducts(this.products);
       return;
     };
+    const endPoint = '/api/products/';
+    this.http.get(environment.URL + endPoint).subscribe( (data: IProduct[]) => {
+      data.map(value => {
+        value.id = value._id;
+        value.price = !!value.price ? +value.price : 0
+      });
+      this.setProducts(data);
+      this.productsLoaded = true;
+    })
 
     // TODO: Fetch products info from api
-    const products = [1,2,3,4,5,6,7,8,9].map(s => (
-      {id: s, 
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI4LFv9vTJ4bPvHrLVDV5wUSFtbWFTrrmorQ&usqp=CAU', 
-        name: `Product ${s}`, price: Math.random() * 10000,
-        description: 'this is product description', available: true}
-    ));
+    // this.http.get()
+    // const products = [1,2,3,4,5,6,7,8,9].map(s => (
+    //   {id: s,
+    //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI4LFv9vTJ4bPvHrLVDV5wUSFtbWFTrrmorQ&usqp=CAU',
+    //     name: `Product ${s}`, price: Math.random() * 10000,
+    //     description: 'this is product description', available: true}
+    // ));
 
     // update products
-    this.setProducts(products);
-    this.productsLoaded = true;
+
   }
 
   addProduct(product: IProduct) {

@@ -5,4 +5,5 @@ export interface IProduct {
   price: number;
   description: string;
   available: boolean;
+  _id: number;
 }
