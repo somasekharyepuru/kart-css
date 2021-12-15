@@ -1,4 +1,4 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<div class="login-wrapper container d-flex justify-content-center align-items-center" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box">
     <mat-card-header>
       <mat-card-title>Sign Up</mat-card-title>
@@ -63,6 +63,7 @@
             formControlName="userEmail"
             autocomplete="off"
             email="true"
+            required
           />
         </mat-form-field>
 
@@ -84,6 +85,7 @@
             type="password"
             name="password"
             formControlName="password"
+            required
           />
         </mat-form-field>
 
@@ -104,11 +106,12 @@
             type="password"
             name="confirmPassword"
             formControlName="confirmPassword"
+            required
           />
         </mat-form-field>
 
         <small
-          *ngIf="f.confirmPassword.touched"
+          *ngIf="f.confirmPassword.touched && f.confirmPassword.errors &&  f.confirmPassword.errors.notSame"
           class="error-message"
         >
           Password Mismatch

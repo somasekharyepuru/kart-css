@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from './modules/layout/layout.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -13,6 +16,8 @@ import { LayoutModule } from './modules/layout/layout.module';
   imports: [
     BrowserModule,
     LayoutModule,
+    HttpClientModule,
+    FlexLayoutModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],
